@@ -31,7 +31,9 @@ Route::get('inicio/clientes/perfil/',[ClientesController::class, 'clientes_perfi
 // MEDIDAS HOMBRE
 Route::get('inicio/clientes/perfil/nueva-medidas',[MedidasController::class, 'clientes_medidas_nueva'])->name('clientes.medidas.registrar');
 Route::get('inicio/clientes/perfil/medidas',[MedidasController::class, 'clientes_medidas'])->name('clientes.medidas');
-
+// 1
+// 2
+// 3
 // RUTAS PARA GESTION PRODUCTOS
 Route::get('inicio/productos',[ProductosController::class, 'productos_index'])->name('productos.index');
 Route::get('inicio/productos/detalles',[ProductosController::class, 'productos_detalles'])->name('productos.detalles');
