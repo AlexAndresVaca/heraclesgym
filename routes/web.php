@@ -39,6 +39,7 @@ Route::get('inicio/productos/detalles',[ProductosController::class, 'productos_d
 Route::get('inicio/reportes/diario',[ReportesController::class ,'reportes_diario'])->name('reportes_diario');
 Route::get('inicio/reportes/mensual',[ReportesController::class ,'reportes_mensual'])->name('reportes_mensual');
 // ACCESSO CLIENTES
+// ACCESSO CLIENTES MASTER
 Route::get('heracles/ingreso',[IngresoController::class,'ingreso'])->name('heracles.ingreso');
 Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('heracles.consulta');
 
