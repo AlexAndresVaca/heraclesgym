@@ -28,6 +28,17 @@ active
 </div>
 <hr>
 <div class="container-fluid">
+    <div class="alert alert-secondary alert-dismissible fade show">
+        <ul>
+            <h3>Leyenda</h3>
+            <li class="badge badge-primary">Mensual</li>
+            <li class="badge badge-success">Diario</li>
+            <li class="badge badge-danger">Pago expirado</li>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h5 class="m-0 font-weight-bold text-danger">mayo del 2020</h5>
@@ -41,86 +52,156 @@ active
                             <th>Apellido</th>
                             <th>Nombre</th>
                             <th>Tipo</th>
+                            <th class="w-150px">Anotaciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Aguas</td>
-                            <td>Carlos</td>
-                            <td>Diario</td>
-                        </tr>
-                        <tr>
-                            <td>0527376747</td>
-                            <td>Perez</td>
-                            <td>Julio</td>
+                    <tbody class="color-white">
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
                             <td>Mensual</td>
+                            <td></td>
                         </tr>
-                        <tr>
-                            <td>1827376747</td>
-                            <td>Jacome</td>
-                            <td>David</td>
-                            <td>Diario</td>
-                        </tr>
-                        <tr>
-                            <td>6547376747</td>
-                            <td>Torres</td>
-                            <td>Ana</td>
-                            <td>Mensual</td>
-                        </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Hoyos</td>
-                            <td>Pedro</td>
-                            <td>Diario</td>
-                        </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Quilo</td>
-                            <td>Matias</td>
-                            <td>Mensual</td>
-                        </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Tamayo</td>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
                             <td>Carolina</td>
                             <td>Diario</td>
+                            <td></td>
                         </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Gutierres</td>
-                            <td>Pepe</td>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
                             <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
                         </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Farias</td>
-                            <td>Maria</td>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
                             <td>Mensual</td>
+                            <td></td>
                         </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Dubal</td>
-                            <td>Laura</td>
-                            <td>Mensual</td>
-                        </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Lopez</td>
-                            <td>Bryan</td>
-                            <td>Mensual</td>
-                        </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Tobar</td>
-                            <td>Salome</td>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
                             <td>Diario</td>
+                            <td></td>
                         </tr>
-                        <tr>
-                            <td>1727376747</td>
-                            <td>Ruiz</td>
-                            <td>Tommy</td>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
                             <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
+                        </tr>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
+                            <td>Mensual</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
+                            <td>Diario</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
+                            <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
+                        </tr>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
+                            <td>Mensual</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
+                            <td>Diario</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
+                            <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
+                        </tr>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
+                            <td>Mensual</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
+                            <td>Diario</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
+                            <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
+                        </tr>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
+                            <td>Mensual</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
+                            <td>Diario</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
+                            <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
+                        </tr>
+                        <tr class="bg-primary">
+                            <td>1727676676</td>
+                            <td>Vaca</td>
+                            <td>Alex</td>
+                            <td>Mensual</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <td>1712957396</td>
+                            <td>Gomes</td>
+                            <td>Carolina</td>
+                            <td>Diario</td>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-danger">
+                            <td>0569124215</td>
+                            <td>Casas</td>
+                            <td>Luis</td>
+                            <td>Mensual</td>
+                            <td>Ingresó con pago caducado</td>
                         </tr>
                     </tbody>
                 </table>

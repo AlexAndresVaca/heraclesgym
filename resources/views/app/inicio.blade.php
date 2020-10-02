@@ -220,5 +220,93 @@ active
     <!-- Content Row -->
 
 </div>
+<div class="dropdown-divider"></div>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <!-- Cambiar Menu por nombre de la pagina donde se encuentre -->
+        <h1 class="h3 mb-0 text-gray-800">Resumen de productos en stock</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example | Tarjeta de clientes mensuales -->
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 bg-black">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">Agua mineral
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-100">89 <span
+                                    class="text-xs font-weight-lighter ">/ productos en stok.</span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
+                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 bg-black">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">Gatorade
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-100">89 <span
+                                    class="text-xs font-weight-lighter ">/ productos en stok.</span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
+                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 bg-black">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">Powerade
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-100">89 <span
+                                    class="text-xs font-weight-lighter ">/ productos en stok.</span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
+                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 bg-black">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">Agua cielo 200ml
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-100">89 <span
+                                    class="text-xs font-weight-lighter ">/ productos en stok.</span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
+                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 @endsection

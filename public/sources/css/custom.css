@@ -2,6 +2,7 @@
     width: 3px;
     /* Tamaño del scroll en vertical */
     /* height: 8px;    Tamaño del scroll en horizontal */
+    height: 5px;
     /* display: none;  Ocultar scroll */
     /* background: transparent; */
     background: rgba(0, 0, 0, 0.9);
@@ -111,7 +112,7 @@
 
 .table-gym td,
 .table-gym th {
-    background-color: transparent;
+    /* background-color: transparent; */
     border: 1px solid gray;
 }
 
@@ -133,17 +134,21 @@
 }
 
 .table-gym tbody tr:nth-child(even) {
-    background-color: white!important;
+    background-color: white;
 }
 
 .table-gym tbody tr {
-    background-color: rgb(226, 226, 226)!important;
+    background-color: rgb(226, 226, 226);
 }
 
 .table-gym tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.205)!important;
     color: white;
     transition: .2s ease-in-out;
+}
+
+.color-white {
+    color: white;
 }
 
 .page-item.active .page-link {

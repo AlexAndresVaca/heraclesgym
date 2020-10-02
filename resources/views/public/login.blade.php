@@ -62,7 +62,7 @@
                                         <a href="https://www.google.com" class="btn btn-user btn-block bg-primary text-gray-100 text-lg mt-1">
                                             <i class="fas fa-store"></i> Visitar nuestra tienda
                                         </a>
-                                        <a href="{{route('heracles.inicio')}}" class="btn btn-user btn-block bg-success text-gray-100 text-lg mt-1">
+                                        <a href="{{route('heracles.ingreso')}}" class="btn btn-user btn-block bg-success text-gray-100 text-lg mt-1">
                                             <i class="fas fa-user"></i> Acceso Cliente
                                         </a>
                                     </form>

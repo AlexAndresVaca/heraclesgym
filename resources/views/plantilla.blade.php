@@ -120,7 +120,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a href="{{route('heracles.inicio')}}" class="nav-link">
+                <a href="{{route('heracles.ingreso')}}" class="nav-link">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span>Acceso Clientes</span>
                 </a>

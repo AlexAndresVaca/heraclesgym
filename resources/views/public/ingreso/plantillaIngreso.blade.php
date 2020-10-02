@@ -40,9 +40,6 @@
                 </button>
                 <div class="row justify-content-end collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item @yield('home')">
-                            <a class="nav-link" href="{{route('heracles.inicio')}}">Home <span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item @yield('ingreso')">
                             <a class="nav-link" href="{{route('heracles.ingreso')}}">Ingreso</a>
                         </li>
