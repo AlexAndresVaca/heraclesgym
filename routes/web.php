@@ -31,6 +31,9 @@ Route::get('inicio/clientes/perfil/',[ClientesController::class, 'clientes_perfi
 // MEDIDAS HOMBRE
 Route::get('inicio/clientes/perfil/nueva-medidas',[MedidasController::class, 'clientes_medidas_nueva'])->name('clientes.medidas.registrar');
 Route::get('inicio/clientes/perfil/medidas',[MedidasController::class, 'clientes_medidas'])->name('clientes.medidas');
+// 1
+// 2
+// 3
 // 4
 // RUTAS PARA GESTION PRODUCTOS
 Route::get('inicio/productos',[ProductosController::class, 'productos_index'])->name('productos.index');
@@ -40,6 +43,7 @@ Route::get('inicio/productos/detalles',[ProductosController::class, 'productos_d
 Route::get('inicio/reportes/diario',[ReportesController::class ,'reportes_diario'])->name('reportes_diario');
 Route::get('inicio/reportes/mensual',[ReportesController::class ,'reportes_mensual'])->name('reportes_mensual');
 // ACCESSO CLIENTES
+// ACCESSO CLIENTES MASTER
 Route::get('heracles/ingreso',[IngresoController::class,'ingreso'])->name('heracles.ingreso');
 Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('heracles.consulta');
 
