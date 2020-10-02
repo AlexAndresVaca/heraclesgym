@@ -36,6 +36,7 @@ Route::get('inicio/clientes/perfil/medidas',[MedidasController::class, 'clientes
 Route::get('inicio/productos',[ProductosController::class, 'productos_index'])->name('productos.index');
 Route::get('inicio/productos/detalles',[ProductosController::class, 'productos_detalles'])->name('productos.detalles');
 // REPORTES
+// REPORTES FROM mini
 Route::get('inicio/reportes/diario',[ReportesController::class ,'reportes_diario'])->name('reportes_diario');
 Route::get('inicio/reportes/mensual',[ReportesController::class ,'reportes_mensual'])->name('reportes_mensual');
 // ACCESSO CLIENTES
