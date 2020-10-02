@@ -42,15 +42,4 @@ Route::get('inicio/reportes/mensual',[ReportesController::class ,'reportes_mensu
 Route::get('heracles/ingreso',[IngresoController::class,'ingreso'])->name('heracles.ingreso');
 Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('heracles.consulta');
 
-// COMENTARIO
-// COMENTARIO2
-// COMENTARIO3
-// COMENTARIO V2
-
-// Coment
-<<<<<<< HEAD
-// PROYECTO SUB
-=======
-
-// PROYECTOMASTER
->>>>>>> 4d4d790f2db0720fd8f31ce7b9bcbcc824ed84f5
+// MI CAMBIO N1
