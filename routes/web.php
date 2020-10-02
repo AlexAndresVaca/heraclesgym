@@ -43,3 +43,4 @@ Route::get('heracles/ingreso',[IngresoController::class,'ingreso'])->name('herac
 Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('heracles.consulta');
 
 // COMENTARIO
+// COMENTARIO2
