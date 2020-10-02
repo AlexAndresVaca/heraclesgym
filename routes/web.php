@@ -48,9 +48,6 @@ Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('her
 // COMENTARIO V2
 
 // Coment
-<<<<<<< HEAD
 // PROYECTO SUB
-=======
 
 // PROYECTOMASTER
->>>>>>> 4d4d790f2db0720fd8f31ce7b9bcbcc824ed84f5
