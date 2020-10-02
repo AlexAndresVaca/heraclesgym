@@ -46,3 +46,4 @@ Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('her
 // COMENTARIO2
 // COMENTARIO3
 // COMENTARIO V2
+// COMENTARIO4
