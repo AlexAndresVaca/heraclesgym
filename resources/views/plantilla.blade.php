@@ -20,20 +20,19 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('sources/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('sources/css/custom.css')}}" rel="stylesheet">
-    <!-- CSS AUTOCOMPLETAR -->
+    <!-- CSS AUTO-COMPLETAR -->
     <link rel="stylesheet" href="{{asset('sources/css/jquery-ui.css')}}">
     <!-- CSS TABLAS -->
     <link href="{{asset('sources/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     @yield('css')
 </head>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper"class="sidebar-toggled">
 
         <!-- Sidebar Menu Lateral -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('inicio')}}">
@@ -53,8 +52,8 @@
                     <span>Inicio</span></a>
             </li>
             <hr class="sidebar-divider my-0">
-            <li class="nav-item @yield('productos_active') ">
-                <a class="nav-link" href="{{route('productos')}}">
+            <li class="nav-item @yield('tienda_active') ">
+                <a class="nav-link" href="{{route('tienda')}}">
                     <i class="fas fa-store"></i>
                     <span>Tienda</span></a>
             </li>
@@ -78,16 +77,16 @@
                 </a>
                 <div id="listaReportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Géneral:</h6>
-                        <a class="collapse-item" href="{{route('reportes_diario')}}">Reporte diario</a>
-                        <a class="collapse-item" href="{{route('reportes_mensual')}}">Reporte mensual</a>
+                        <h6 class="collapse-header">Tipo de reporte</h6>
+                        <a class="collapse-item" href="{{route('reportes.diario')}}">Reporte diario</a>
+                        <a class="collapse-item" href="{{route('reportes.mensual')}}">Reporte mensual</a>
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Seccion Clientes -->
+            <!-- Sección Clientes -->
             <div class="sidebar-heading">
                 Clientes
             </div>
@@ -96,7 +95,7 @@
                     <i class="fas fa-book-reader"></i>
                     <span>Gestión de Clientes</span></a>
             </li>
-            <!-- Fin Seccion Clientes -->
+            <!-- Fin Sección Clientes -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -143,7 +142,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-black topbar mb-4 relative-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-black topbar relative-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -153,11 +152,11 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Divisor antes de llegar a informacion del usuario-->
+                        <!-- Divisor antes de llegar a información del usuario-->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information | Informacion usuario -->
+                        <!-- Nav Item - User Information | Información usuario -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -184,7 +183,7 @@
                 </nav>
                 <!-- End of Topbar -->
 
-
+                @yield('nav')
                 @yield('main')
 
             </div>
@@ -223,7 +222,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Selecciona el botón cerrar sesion para salir.</div>
+                <div class="modal-body">Selecciona el botón cerrar sesión para salir.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <form action="{{route('cerrarSesion')}}" method="post">
@@ -245,7 +244,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('sources/js/sb-admin-2.min.js')}}"></script>
 
-    <!-- AUTOCOMPLETAR SCRIP -->
+    <!-- AUTO-COMPLETAR SCRIP -->
     <script src="{{asset('sources/js/jquery-ui.min.js')}}"></script>
     <!--  -->
     <!-- Page level plugins -->

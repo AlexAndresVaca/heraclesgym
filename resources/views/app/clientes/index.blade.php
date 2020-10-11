@@ -1,9 +1,14 @@
 @extends('plantilla')
-@section('css')
-
-@endsection
 @section('gClientes_active')
 active
+@endsection
+@section('nav')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('inicio')}}"> <i class="fa fa-home"></i> Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+  </ol>
+</nav>
 @endsection
 @section('main')
 <div class="container-fluid">
@@ -14,20 +19,22 @@ active
     <!-- AGREGAR -->
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#registrarClienteModal">
+            <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#registrarClienteModal"
+                id="myBtn">
                 <i class="fas fa-user-plus"></i>
                 Nuevo Cliente
             </button>
         </div>
     </div>
-    @if(session('crear_usu'))
+    @if(session('exito'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Registro realizado!</strong> se ha agregado un cliente de manera exitosa.
+        <strong>Registro realizado!</strong> se ha agregado un cliente de manera exitosa. <strong><a href="{{route('clientes.perfil',session('new_cliente'))}}">Ver perfil</a></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     @endif
+
     <!-- TABLA -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -35,31 +42,26 @@ active
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-gym table-dark table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-gym table-dark table-bordered" id="clientesTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
-                            <th>CI</th>
+                        <tr class="text-center">
+                            <th class="w-150px">CI</th>
                             <th>Apellido</th>
                             <th>Nombre</th>
                             <th>Tipo</th>
-                            <th><i class="fas fa-info-circle"></i> Info</th>
+                            <th class="w-150px"><i class="fas fa-info-circle"></i> Info</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($lista_clientes as $item)
                         <tr>
-                            <td>1712957369</td>
-                            <td>Vaca</td>
-                            <td>Eric</td>
-                            <td>Mensual</td>
-                            <td><a href="{{route('clientes.perfil')}}" class="btn btn-sm btn-primary">Perfil</a></td>
+                            <td>{{$item->ci_cli}}</td>
+                            <td>{{$item->apellido_cli}}</td>
+                            <td>{{$item->nombre_cli}}</td>
+                            <td>{{$item->tipo_cli}}</td>
+                            <td class="w-150px d-flex justify-content-center"><a href="{{route('clientes.perfil',$item->ci_cli)}}" class="btn btn-sm btn-primary w-75px">Perfil</a></td>
                         </tr>
-                        <tr>
-                            <td>1727676676</td>
-                            <td>Vaca</td>
-                            <td>Alex</td>
-                            <td>Diario</td>
-                            <td><a href="{{route('clientes.perfil')}}" class="btn btn-sm btn-primary">Perfil</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -78,37 +80,66 @@ active
                 </button>
             </div>
             <div class="modal-body">
-                <!-- <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Error</h4>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae vitae, quasi totam ratione expedita accusamus eaque tempore in enim iure ipsam qui voluptatum ex reiciendis saepe inventore animi quo nulla?
-                        </p>
-                    </div> -->
-                <form action="">
+                <form action="{{route('clientes.add')}}" method="POST" class="needs-validation" novalidate autocomplete="off">
+                    @CSRF
                     <div class="row mb-2">
                         <div class="col">
                             <!-- AGREGAR (is-valid) 0 (is-invalid) para mostrar el estado de un input -->
-                            <input type="text" class="form-control" placeholder="CI">
-                            <!-- Caso error -->
-                            <!-- <div class="ml-1" style="color:red;">
-                                    Muestra primer error
-                                </div> -->
+                            <input type="text" maxlength="10" minlength="10" class="form-control @if($errors->has('ci_cli'))is-invalid @endif" placeholder="CI" name="ci_cli" required
+                                value="{{old('ci_cli')}}">
+                            @if($errors->has('ci_cli'))
+                            <div class="ml-1 text-danger">
+                                {{$errors->first('ci_cli')}}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control form-control" placeholder="Apellido">
+                            <input type="text"
+                                class="form-control form-control @if($errors->has('apellido_cli'))is-invalid @endif" required
+                                placeholder="Apellido" name="apellido_cli" value="{{old('apellido_cli')}}">
+                            @if($errors->has('apellido_cli'))
+                            <div class="ml-1 text-danger">
+                                {{$errors->first('apellido_cli')}}
+                            </div>
+                            @endif
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control form-control" placeholder="Nombre">
-                            <!-- <div class="ml-1 text-danger">
-                                    Muestra primer error
-                                </div> -->
+                            <input type="text"
+                                class="form-control form-control @if($errors->has('nombre_cli'))is-invalid @endif"
+                                required placeholder="Nombre" name="nombre_cli" value="{{old('nombre_cli')}}"
+                                id="nombre_cli">
+                            @if($errors->has('nombre_cli'))
+                            <div class="ml-1 text-danger">
+                                {{$errors->first('nombre_cli')}}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    +593</span>
+                            </div>
+                            <input type="text" class="form-control @if($errors->has('celular_cli'))is-invalid @endif"
+                                placeholder="Número celular sin el 0" name="celular_cli" maxlength="9" minlength="9"
+                                value="{{old('celular_cli')}}">
+                            @if($errors->has('celular_cli'))
+                            <div class="ml-1 text-danger">
+                                {{$errors->first('celular_cli')}}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Celular">
+                            <label for="sexo_cli">Sexo</label>
+                            <select name="sexo_cli" class="form-control" id="sexo_cli">
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -123,6 +154,37 @@ active
 </div>
 @endsection
 @section('js')
-<!-- SCRIPS TABLAS -->
+<!-- SCRIPS MOSTRAR MODAL SI NO CUMPLE VALIDACION -->
+@if($errors->any())
+<script>
+$(document).ready(function() {
+    $("#registrarClienteModal").modal("show");
+});
+</script>
+@endif
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+</script>
+@endsection
+@section('nombre_cli')
 
 @endsection
+
+<!-- https://api.whatsapp.com/send?phone=593999999239&text=Hola PARA enviar mensaje a wsp -->

@@ -23,53 +23,94 @@ active
     </div>
 </div>
 <div class="container">
+    @if(session('tipo_mensual')==TRUE)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="display-4 mb-0">
+            <strong>Resultados de la consulta:</strong><br>
+            Cliente <strong>({{session('cliente_apellido')}} {{session('cliente_nombre')}})</strong> tu pago expira el día <strong>{{session('f_vecimiento')->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}</strong>.
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if(session('prox_expirar')==TRUE)
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <p class="display-4 mb-0">
-            <strong>Su pago esta próximo a expirar!</strong><br>
-            Cliente <strong class="">(Vaca Alex) </strong> tu pago expira el día <strong>21 de mayo</strong>.
+            <strong>Su pago esta próximo a expirar {{session('f_vecimiento')->diffForHumans()}}!</strong>
         </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    @endif
+    @if(session('tipo_diario')==TRUE)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         <p class="display-4 mb-0">
-            <strong>Aviso!</strong><br>
-            Cliente <strong>(Vaca Alex)</strong> tu subscripción actual es tipo <strong>diaria</strong>.
+            <strong>Resultados de la consulta:</strong><br>
+            Cliente <strong>({{session('cliente_apellido')}} {{session('cliente_nombre')}})</strong> suscripción diaria.
         </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    @endif
+    @if(session('pago_expirado')==TRUE)
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <p class="display-4 mb-0">
-            <strong>Tu subscripción ha caducado!</strong><br>
-            Cliente <strong>(Vaca Alex)</strong> tu pago expiró el día <strong>21 de mayo</strong>.
+            <strong>Tu suscripción ha caducado!</strong><br>
+            Cliente <strong>({{session('cliente_apellido')}} {{session('cliente_nombre')}})</strong> tu pago expiró el día <strong>{{session('f_vecimiento')->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}</strong>.
         </p>
-        <form class="row justify-content-end" action="">
-            <button class="d-inline btn btn-success"><i class="fa fa-info-circle"></i> Entiendo, cambiame a subscripción
-                diaria
-            </button>
-        </form>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form action="" class="py-3 mb-5">
+    @endif
+    <form action="{{route('heracles.consulta.post')}}" method="POST" class="py-3 mb-5" autocomplete="off">
+        @CSRF
         <div class="form-group row">
-            <label for="colFormLabelLg"
-                class="col-sm-2 col-form-label text-gray-900 col-form-label-lg">Credenciales</label>
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label text-gray-900 col-form-label-lg">Datos
+                personales</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-lg" id="colFormLabelLg"
-                    placeholder="CI o Apellido y Nombre">
-                <div class="ml-2 text-danger">
-                    No se encuentran registros
+                <div class="form-group row">
+                    <input type="text" name="info_cliente_ci"
+                        class="form-control form-control-lg @if($errors->has('info_cliente_ci')) is-invalid @endif"
+                        id="colFormLabelLg" placeholder="Cédula de Identidad (Sin guiones)" value="{{old('info_cliente_ci')}}" autofocus>
+                    @if($errors->has('info_cliente_ci'))
+                    <div class="invalid-feedback">
+                        <h6 class="ml-2 h5">{{$errors->first('info_cliente_ci')}}</h6>
+                    </div>
+                    @endif
                 </div>
+                <div class="form-group row justify-content-center text-uppercase">
+                    o también puedes consultar mediante:
+                </div>
+                <div class="form-group row justify-content-around">
+                    <input type="text" name="info_cliente_apellido"
+                        class="col-5 form-control form-control-lg @if($errors->has('info_cliente_apellido')) is-invalid @endif"
+                        id="colFormLabelLg" placeholder="Apellido" value="{{old('info_cliente_apellido')}}">
+                    <input type="text" name="info_cliente_nombre"
+                        class="col-5 form-control form-control-lg @if($errors->has('info_cliente_nombre')) is-invalid @endif"
+                        id="colFormLabelLg" placeholder="Nombre" value="{{old('info_cliente_nombre')}}">
+                </div>
+                @if($errors->has('info_cliente_apellido') AND $errors->has('info_cliente_nombre'))
+                <div class="form-group row justify-content-around text-danger">
+                    <span class="h5">{{$errors->first('info_cliente_apellido')}}</span>
+                </div>
+                @elseif($errors->has('info_cliente_apellido'))
+                <div class="form-group row justify-content-around text-danger">
+                    <span class="h5">{{$errors->first('info_cliente_apellido')}}</span>
+                </div>
+                @elseif($errors->has('info_cliente_nombre'))
+                <div class="form-group row justify-content-around text-danger">
+                    <span class="h5">{{$errors->first('info_cliente_nombre')}}</span>
+                </div>
+                @endif
             </div>
         </div>
-        <button type="submit" class="mx-auto col-6 btn btn-danger btn-lg btn-block">Registrar</button>
-        <a href="{{route('heracles.ingreso')}}" class="mx-auto col-6 btn btn-secondary btn-lg btn-block">Volver</a>
+
+        <button type="submit" class="mx-auto col-6 btn btn-info btn-lg btn-block">Consultar</button>
+        <a href="{{route('heracles.consulta')}}" class="mx-auto col-6 btn btn-secondary btn-lg btn-block">Volver</a>
     </form>
 </div>
-
 @endsection
