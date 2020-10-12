@@ -66,4 +66,4 @@ Route::POST('heracles/consulta/',[IngresoController::class,'consulta_post'])->na
 
 // PDF
 // Route::get('descargarPDF',[GenerarPDF::class,'generar_pdf'])->name('descargar.pdf');
-
+// Vas a crear PDFs
