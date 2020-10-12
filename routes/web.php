@@ -62,11 +62,8 @@ Route::POST('heracles/ingreso/',[IngresoController::class,'ingreso_post'])->name
 Route::PUT('heracles/ingreso/cambiar-tipo/',[IngresoController::class,'cambiar_tipo'])->name('heracles.cambiar.tipo');
 
 Route::get('heracles/consulta',[IngresoController::class,'consulta'])->name('heracles.consulta');
-<<<<<<< HEAD
 Route::POST('heracles/consulta/',[IngresoController::class,'consulta_post'])->name('heracles.consulta.post');
 
 // PDF
 // Route::get('descargarPDF',[GenerarPDF::class,'generar_pdf'])->name('descargar.pdf');
 
-=======
->>>>>>> 0c765247981da1a3b3ecfc68491b23a4f6046758
