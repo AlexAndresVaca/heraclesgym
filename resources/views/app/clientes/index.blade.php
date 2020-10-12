@@ -4,10 +4,10 @@ active
 @endsection
 @section('nav')
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('inicio')}}"> <i class="fa fa-home"></i> Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Clientes</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('inicio')}}"> <i class="fa fa-home"></i> Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+    </ol>
 </nav>
 @endsection
 @section('main')
@@ -28,7 +28,8 @@ active
     </div>
     @if(session('exito'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Registro realizado!</strong> se ha agregado un cliente de manera exitosa. <strong><a href="{{route('clientes.perfil',session('new_cliente'))}}">Ver perfil</a></strong>
+        <strong>Registro realizado!</strong> se ha agregado un cliente de manera exitosa. <strong><a
+                href="{{route('clientes.perfil',session('new_cliente'))}}">Ver perfil</a></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -37,12 +38,17 @@ active
 
     <!-- TABLA -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header d-flex justify-content-between py-3">
             <h5 class="m-0 font-weight-bold text-danger">Registro de clientes</h5>
+            <a href="{{route('descargar.pdf.clientes')}}" class="btn btn-danger" target="blank">
+                <i class="far fa-file-pdf"></i>
+                Generar PDF
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-gym table-dark table-bordered" id="clientesTable" width="100%" cellspacing="0">
+                <table class="table table-gym table-dark table-bordered" id="clientesTable" width="100%"
+                    cellspacing="0">
                     <thead>
                         <tr class="text-center">
                             <th class="w-150px">CI</th>
@@ -59,7 +65,9 @@ active
                             <td>{{$item->apellido_cli}}</td>
                             <td>{{$item->nombre_cli}}</td>
                             <td>{{$item->tipo_cli}}</td>
-                            <td class="w-150px d-flex justify-content-center"><a href="{{route('clientes.perfil',$item->ci_cli)}}" class="btn btn-sm btn-primary w-75px">Perfil</a></td>
+                            <td class="w-150px d-flex justify-content-center"><a
+                                    href="{{route('clientes.perfil',$item->ci_cli)}}"
+                                    class="btn btn-sm btn-primary w-75px">Perfil</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -80,13 +88,15 @@ active
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('clientes.add')}}" method="POST" class="needs-validation" novalidate autocomplete="off">
+                <form action="{{route('clientes.add')}}" method="POST" class="needs-validation" novalidate
+                    autocomplete="off">
                     @CSRF
                     <div class="row mb-2">
                         <div class="col">
                             <!-- AGREGAR (is-valid) 0 (is-invalid) para mostrar el estado de un input -->
-                            <input type="text" maxlength="10" minlength="10" class="form-control @if($errors->has('ci_cli'))is-invalid @endif" placeholder="CI" name="ci_cli" required
-                                value="{{old('ci_cli')}}">
+                            <input type="text" maxlength="10" minlength="10"
+                                class="form-control @if($errors->has('ci_cli'))is-invalid @endif" placeholder="CI"
+                                name="ci_cli" required value="{{old('ci_cli')}}">
                             @if($errors->has('ci_cli'))
                             <div class="ml-1 text-danger">
                                 {{$errors->first('ci_cli')}}
@@ -97,8 +107,8 @@ active
                     <div class="row mb-2">
                         <div class="col">
                             <input type="text"
-                                class="form-control form-control @if($errors->has('apellido_cli'))is-invalid @endif" required
-                                placeholder="Apellido" name="apellido_cli" value="{{old('apellido_cli')}}">
+                                class="form-control form-control @if($errors->has('apellido_cli'))is-invalid @endif"
+                                required placeholder="Apellido" name="apellido_cli" value="{{old('apellido_cli')}}">
                             @if($errors->has('apellido_cli'))
                             <div class="ml-1 text-danger">
                                 {{$errors->first('apellido_cli')}}

@@ -52,8 +52,12 @@ active
         </button>
     </div>
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header d-flex justify-content-between py-3">
             <h5 class="m-0 font-weight-bold text-danger">{{$fecha->isoFormat('MMMM \d\e\l YYYY')}}</h5>
+            <a href="{{route('descargar.pdf.reporte-mensual',$fecha)}}" class="btn btn-danger" target="blank">
+                    <i class="far fa-file-pdf"></i>
+                    Generar PDF
+                </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

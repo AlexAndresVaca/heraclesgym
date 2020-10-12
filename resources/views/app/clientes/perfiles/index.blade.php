@@ -189,7 +189,6 @@ active
                     </div>
                 </div>
             </div>
-
             <!-- Content Row FIN MAIN-->
         </div>
     </div>

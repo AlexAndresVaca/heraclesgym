@@ -24,9 +24,9 @@ active
                     <h6>Selecciona una fecha</h6>
                 </div>
                 <div class="card-body d-flex justify-content-center">
-                        <input type="date" class="form-control mx-2" name="fecha"
-                            value="@if($errors->has('fecha')){{old('fecha')}}@else{{$fecha->isoFormat('Y-M-D')}}@endif">
-                        <button type="submit" class="btn btn-primary">Generar</button>
+                    <input type="date" class="form-control mx-2" name="fecha"
+                        value="@if($errors->has('fecha')){{old('fecha')}}@else{{$fecha->isoFormat('Y-M-D')}}@endif">
+                    <button type="submit" class="btn btn-primary">Generar</button>
                 </div>
                 @if($errors->has('fecha'))
                 <div class="card-footer is-invalid text-danger text-center ">
@@ -52,8 +52,12 @@ active
         </button>
     </div>
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header d-flex justify-content-between py-3">
             <h5 class="m-0 font-weight-bold text-danger">{{$fecha->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}</h5>
+                <a href="{{route('descargar.pdf.reporte-diario',$fecha)}}" class="btn btn-danger" target="blank">
+                    <i class="far fa-file-pdf"></i>
+                    Generar PDF
+                </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
