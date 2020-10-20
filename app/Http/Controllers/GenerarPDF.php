@@ -42,6 +42,7 @@ class GenerarPDF extends Controller
         // Inicializamos variables
         $numDiarios = 0;
         $numMensuales = 0;
+        $numEspeciales = 0;
         $numExpirados = 0;
         $total = 0;
         $fechaGenerado = now();
@@ -50,31 +51,36 @@ class GenerarPDF extends Controller
         $fecha = Carbon::create($fecha);
         $nombre_pdf = 'ingresos del día ' . $fecha->isoFormat('D-MM-Y');
         // SQL
-        $listaIngresos = Ingreso::select('*')
+        $listaIngresos = Ingreso::select('*', 'ingresos.created_at as hora_ingreso')
             ->join('clientes', 'clientes.ci_cli', '=', 'ingresos.fk_ci_cli_ing')
             ->whereDate('ingresos.created_at', $fecha)
-            ->orderBy('anotacion_ing', 'desc')
+            ->orderBy('hora_ingreso', 'asc')
             ->get();
+        // return $listaIngresos;
         $total = count($listaIngresos);
-        foreach($listaIngresos as $item){
-            if($item->estado_ing == "Mensual"){
+        foreach ($listaIngresos as $item) {
+            if ($item->estado_ing == "Mensual") {
                 $numMensuales++;
-            }elseif($item->estado_ing == "Diario"){
+            } elseif ($item->estado_ing == "Diario" and $item->anotacion_ing == NULL) {
                 $numDiarios++;
             }
-            if($item->anotacion_ing != Null){
+            if ($item->anotacion_ing == "Ingresó con pago expirado") {
                 $numExpirados++;
+            } elseif ($item->anotacion_ing == "Pago especial: 1$") {
+                $numEspeciales++;
             }
         }
         // Cargamos al pdf una vista y sus datos
-        $pdf->loadView('generarPDF.reporte-diario', compact('nombre_pdf', 'listaIngresos', 'fecha', 'fechaGenerado', 'total', 'numDiarios', 'numMensuales', 'numExpirados'));
+        $pdf->loadView('generarPDF.reporte-diario', compact('nombre_pdf', 'listaIngresos', 'fecha', 'fechaGenerado', 'total', 'numEspeciales',  'numDiarios', 'numMensuales', 'numExpirados'));
         return $pdf->stream();
     }
-    public function pdf_reporte_mensual($fecha){
+    public function pdf_reporte_mensual($fecha)
+    {
         // Inicializo variables
-        $numMensuales = 0; 
-        $numDiarios = 0; 
+        $numMensuales = 0;
+        $numDiarios = 0;
         $numExpirados = 0;
+        $numEspeciales = 0;
         $total = 0;
         $fecha = Carbon::create($fecha);
         $fechaGenerado = now();
@@ -84,25 +90,27 @@ class GenerarPDF extends Controller
         $pdf = app('dompdf.wrapper');
         $nombre_pdf = 'ingresos del mes ' . $fecha->isoFormat('MM-Y');
         // SQL
-        $listaIngresos = Ingreso::select('*','ingresos.created_at as fecha_ingreso')
-                                ->join('clientes', 'clientes.ci_cli', '=', 'ingresos.fk_ci_cli_ing')
-                                ->whereMonth('ingresos.created_at', $mesActual)
-                                ->whereYear('ingresos.created_at', $anioActual)
-                                ->orderBy('ingresos.created_at','desc')
-                                ->get();
+        $listaIngresos = Ingreso::select('*', 'ingresos.created_at as fecha_ingreso')
+            ->join('clientes', 'clientes.ci_cli', '=', 'ingresos.fk_ci_cli_ing')
+            ->whereMonth('ingresos.created_at', $mesActual)
+            ->whereYear('ingresos.created_at', $anioActual)
+            ->orderBy('ingresos.created_at', 'desc')
+            ->get();
         // Calculamos cuantos clientes diarios, mensuales y expirados han ingresado en el mes
         $total = count($listaIngresos);
-        foreach($listaIngresos as $item){
-            if($item->estado_ing == "Mensual"){
+        foreach ($listaIngresos as $item) {
+            if ($item->estado_ing == "Mensual") {
                 $numMensuales++;
-            }elseif($item->estado_ing == "Diario"){
+            } elseif ($item->estado_ing == "Diario" and $item->anotacion_ing == NULL) {
                 $numDiarios++;
             }
-            if($item->anotacion_ing != Null){
+            if ($item->anotacion_ing == "Ingresó con pago expirado") {
                 $numExpirados++;
+            } elseif ($item->anotacion_ing == "Pago especial: 1$") {
+                $numEspeciales++;
             }
-        } 
-        $pdf->loadView('generarPDF.reporte-mensual', compact('nombre_pdf', 'listaIngresos', 'fecha', 'fechaGenerado', 'total', 'numDiarios', 'numMensuales', 'numExpirados'));
+        }
+        $pdf->loadView('generarPDF.reporte-mensual', compact('nombre_pdf', 'listaIngresos', 'fecha', 'fechaGenerado', 'total', 'numEspeciales',  'numDiarios', 'numMensuales', 'numExpirados'));
         return $pdf->stream();
     }
 }

@@ -11,33 +11,39 @@
             <th>Apellido</th>
             <th>Nombre</th>
             <th>Tipo</th>
+            <th>Hora</th>
             <th>Anotaciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach($listaIngresos as $item)
-        <tr @if($item->anotacion_ing != NULL) style="color:red;" @endif >
+        <tr @if($item->anotacion_ing == "Ingresó con pago expirado") style="color:red;"@elseif($item->anotacion_ing == "Pago especial: 1$") style="color:blue;" @endif >
             <td>{{$item->ci_cli}}</td>
             <td>{{$item->apellido_cli}}</td>
             <td>{{$item->nombre_cli}}</td>
             <td>{{$item->tipo_cli}}</td>
+            <td>{{\Carbon\Carbon::parse($item->hora_ingreso)->isoFormat('HH:mm')}}</td>
             <td>{{$item->anotacion_ing}}</td>
         </tr>
         @endforeach
         @if(count($listaIngresos) == 0)
         <tr>
-            <td colspan="5"><h3>SIN INGRESOS REGISTRADOS</h3></td>
+            <td colspan="6"><h3>SIN INGRESOS REGISTRADOS</h3></td>
         </tr>
         @endif
     </tbody>
     <tfoot>
         <tr>
-            <td class="table-footer-header text-center" colspan="5">Resumen</td>
+            <td class="table-footer-header text-center" colspan="6">Resumen</td>
         </tr>
         <tr>
-            <td colspan="3" rowspan="4"></td>
+            <td colspan="4" rowspan="5"></td>
             <td>N° Diarios</td>
             <td class="text-center">{{$numDiarios}}</td>
+        </tr>
+        <tr class="text-blue">
+            <td>N° Especiales</td>
+            <td class="text-center">{{$numEspeciales}}</td>
         </tr>
         <tr>
             <td>N° Mensuales</td>

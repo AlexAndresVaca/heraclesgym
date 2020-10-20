@@ -179,8 +179,11 @@ active
                                 @foreach($listaMedidas as $item)
                                 <tr>
                                     <td>{{$item->cod_med}}</td>
-                                    <td>{{$item->created_at->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}} <strong>({{$item->created_at->diffForHumans()}})</strong></td>
-                                    <td><a href="{{route('clientes.medidas',$item)}}" class="btn btn-sm btn-primary">Ver</a>
+                                    <td>{{$item->created_at->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}
+                                        <strong>({{$item->created_at->diffForHumans()}})</strong>
+                                    </td>
+                                    <td><a href="{{route('clientes.medidas',$item)}}"
+                                            class="btn btn-sm btn-primary">Ver</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -304,7 +307,7 @@ active
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Pago</h5>
+                <span class="h2 text-gray-900">Selecciona una suscripción</span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -324,8 +327,6 @@ active
                     @CSRF
                     <div class="row justify-content-center mb-2">
                         <article class="">
-                            <span class="h2 text-gray-900">Selecciona una suscripción</span>
-                            <hr class="">
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="tiempo" id="1mes" value="1" checked>
                                 <label class="h3 form-check-label " for="1mes">
@@ -363,6 +364,23 @@ active
                                         </strong>{{$semana->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}
                                     </span>
                                 </label>
+                            </div>
+                            <hr>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="tiempo" id="otro" value="4">
+                                <label class="h3 form-check-label" for="otro">Otro</label>
+                            </div>
+                            <div class="d-flex justify-content-around">
+                                <div>
+                                    <label for="desde_pago">Desde</label><br>
+                                    <input class="form-control" type="date" name="desde_pago" id="desde_pago" readonly
+                                        value="@if($errors->has('desde_pago')){{old('desde_pago')}}@else{{$hoy->isoFormat('Y-M-D')}}@endif">
+                                </div>
+                                <div>
+                                    <label for="hasta_pago">Hasta</label><br>
+                                    <input class="form-control" type="date" name="hasta_pago" id="hasta_pago" readonly
+                                        value="@if($errors->has('hasta_pago')){{old('hasta_pago')}}@else{{$mes->isoFormat('Y-M-D')}}@endif">
+                                </div>
                             </div>
                             <hr>
                     </div>
@@ -412,5 +430,19 @@ $(document).ready(function() {
         });
     }, false);
 })();
+$(document).ready(function() {
+    $("input[name='tiempo']").click(function() {
+        if ($(this).val() == 4) {
+            // alert("La edad seleccionada es: " + $(this).val());
+            $("#desde_pago").removeAttr("readonly");
+            $("#hasta_pago").removeAttr("readonly");
+
+        } else {
+            // alert("La edad seleccionada es: " + $(this).val());
+            $("#desde_pago").attr("readonly",true);
+            $("#hasta_pago").attr("readonly",true);
+        }
+    });
+});
 </script>
 @endsection

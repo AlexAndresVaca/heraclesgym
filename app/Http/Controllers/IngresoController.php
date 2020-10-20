@@ -109,6 +109,9 @@ class IngresoController extends Controller
             $registro_exito_dia = TRUE;
             $f_vencimiento = null;
         }
+        if($cliente->apellido_cli === "Heracles" AND $cliente->nombre_cli === "Especial"){
+            $newIngreso->anotacion_ing = "Pago especial: 1$";
+        }
         // Por ultimo debemos comprobar si ese cliente ya ingreso el dia de hoy
         $hoy = now()->isoFormat('Y-M-D');
         $comprobarHoy = Ingreso::where('fk_ci_cli_ing', '=', $cliente->ci_cli)
@@ -123,7 +126,6 @@ class IngresoController extends Controller
             $pago_expirado = FALSE;
             $ya_existe = TRUE;
         }
-
         return back()->with([
             'prox_expirar' => $prox_expirar,
             'registro_exito' => $registro_exito,

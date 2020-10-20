@@ -40,17 +40,6 @@ active
 </div>
 <hr>
 <div class="container-fluid">
-    <div class="alert alert-secondary alert-dismissible fade show">
-        <ul>
-            <h3>Leyenda</h3>
-            <li class="badge badge-primary">Mensual</li>
-            <li class="badge badge-success">Diario</li>
-            <li class="badge badge-danger">Pago expirado</li>
-        </ul>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     <div class="card shadow mb-4">
         <div class="card-header d-flex justify-content-between py-3">
             <h5 class="m-0 font-weight-bold text-danger">{{$fecha->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}</h5>
@@ -69,6 +58,7 @@ active
                             <th>Apellido</th>
                             <th>Nombre</th>
                             <th>Tipo</th>
+                            <th>Hora</th>
                             <th class="w-150px">Anotaciones</th>
                         </tr>
                     </thead>
@@ -80,6 +70,7 @@ active
                             <td>{{$item->apellido_cli}}</td>
                             <td>{{$item->nombre_cli}}</td>
                             <td>{{$item->tipo_cli}}</td>
+                            <td>{{\Carbon\Carbon::parse($item->hora_ingreso)->isoFormat('HH:mm')}}</td>
                             <td>{{$item->anotacion_ing}}</td>
                         </tr>
                         @endforeach

@@ -147,10 +147,10 @@ $(document).ready(function() {
         "columnDefs": [{
             "targets": [],
             "searchable": false,
-            "orderable": false
+            "visible": false,
         }],
         "order": [
-            [4, "desc"]
+            [4, "asc"]
         ]
     });
 });
@@ -169,12 +169,12 @@ $(document).ready(function() {
             }
         },
         "columnDefs": [{
-            "targets": [],
+            "targets": [0],
             "searchable": false,
-            "orderable": false
+            "visible": false
         }],
         "order": [
-            [4, "asc"]
+            [0, "desc"]
         ]
     });
 });

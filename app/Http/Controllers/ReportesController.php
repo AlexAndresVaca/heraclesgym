@@ -17,8 +17,7 @@ class ReportesController extends Controller
             return redirect(route('login'));
         } else {
             $hoy = now();
-            $ayer = Carbon::create('2020-10-10');
-            $listaIngresos = Ingreso::select('*')
+            $listaIngresos = Ingreso::select('*','ingresos.created_at as hora_ingreso')
                                     ->join('clientes', 'clientes.ci_cli', '=', 'ingresos.fk_ci_cli_ing')
                                     ->whereDate('ingresos.created_at', $hoy)
                                     ->get();
@@ -50,7 +49,7 @@ class ReportesController extends Controller
                 'fecha.before_or_equal' => 'No hay registros del:',
             ]);
             $fecha = Carbon::create($request->fecha);
-            $listaIngresos = Ingreso::select('*')
+            $listaIngresos = Ingreso::select('*','ingresos.created_at as hora_ingreso')
                                     ->join('clientes', 'clientes.ci_cli', '=', 'ingresos.fk_ci_cli_ing')
                                     ->whereDate('ingresos.created_at', $fecha)
                                     ->get();

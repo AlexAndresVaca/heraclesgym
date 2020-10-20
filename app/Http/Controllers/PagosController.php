@@ -18,20 +18,21 @@ class PagosController extends Controller
 
         // PREPARO PARA GUARDAR EN LA BDD
         $newPago = new App\Models\Pago;
-        // DEPENDE de la eleccion del tipo de subscripcion
+        // DEPENDE de la selección del tipo de suscripción
         if($request->tiempo === '1'){
-            // return '1 Mes';
             $newPago->f_vencimiento_pag =  $mes;
         }
         elseif($request->tiempo === '2'){
-            // return '2 Semanas';
             $newPago->f_vencimiento_pag = $semana2;
         }
         elseif($request->tiempo === '3'){
-            // return '1 Semana';
             $newPago->f_vencimiento_pag = $semana;
         }
-        // Alamaceno los datos
+        elseif($request->tiempo === '4'){
+            $newPago->f_vencimiento_pag = $request->hasta_pago;
+            $newPago->created_at = $request->desde_pago;
+        }
+        // Almaceno los datos
         $newPago->detalle_pag = $request->detalle_pag;
         $newPago->fk_ci_cli_pag = $id;
         // Cambio el estado de diario a mensual

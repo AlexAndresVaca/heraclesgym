@@ -40,17 +40,6 @@ active
 </div>
 <hr>
 <div class="container-fluid">
-    <div class="alert alert-secondary alert-dismissible fade show">
-        <ul>
-            <h3>Leyenda</h3>
-            <li class="badge badge-primary">Mensual</li>
-            <li class="badge badge-success">Diario</li>
-            <li class="badge badge-danger">Pago expirado</li>
-        </ul>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     <div class="card shadow mb-4">
         <div class="card-header d-flex justify-content-between py-3">
             <h5 class="m-0 font-weight-bold text-danger">{{$fecha->isoFormat('MMMM \d\e\l YYYY')}}</h5>
@@ -65,6 +54,7 @@ active
                     cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Fecha</th>
                             <th>#CI</th>
                             <th>Apellido</th>
                             <th>Nombre</th>
@@ -74,14 +64,13 @@ active
                         </tr>
                     </thead>
                     @foreach($listaIngresos as $item)
-                    <tr
-                        class="@if($item->anotacion_ing != '') bg-expirado @elseif($item->anotacion_ing == '' AND $item->tipo_cli == 'Mensual') bg-mensual @elseif($item->tipo_cli == 'Diario') bg-diario @endif">
+                    <tr>
+                        <td>{{\Carbon\Carbon::parse($item->dia_ingreso)}}</td>
                         <td>{{$item->ci_cli}}</td>
                         <td>{{$item->apellido_cli}}</td>
                         <td>{{$item->nombre_cli}}</td>
                         <td>{{$item->tipo_cli}}</td>
-                        <td>{{\Carbon\Carbon::parse($item->dia_ingreso)->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}
-                        </td>
+                        <td>{{\Carbon\Carbon::parse($item->dia_ingreso)->isoFormat('dddd D \d\e MMMM \d\e\l YYYY')}}</td>
                         <td>{{$item->anotacion_ing}}</td>
                     </tr>
                     @endforeach
